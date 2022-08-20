@@ -12,6 +12,7 @@ const xss = require('xss-clean')
 const hpp = require('hpp')
 const cookieParser = require('cookie-parser')
 const compression = require('compression')
+const cors = require('cors')
 
 const AppError = require('./utils/appError')
 const globalErrorHandler = require('./controllers/errorController')
@@ -28,6 +29,18 @@ const app = express()
 // views
 app.set('view engine', 'pug') // 设置引擎
 app.set('views', path.join(__dirname, 'views')) // 引入views文件夹 ./views
+
+
+// 实施CORS
+// 实现跨域请求
+app.use(cors())
+
+// ptions 请求就是预检请求，可用于检测服务器允许的 http 方法。当发起跨域请求时，
+// 由于安全原因，触发一定条件时浏览器会在正式请求之前自动先发起 OPTIONS 请求，
+// 即 CORS 预检请求，服务器若接受该跨域请求，浏览器才继续发起正式请求。
+app.options('*', cors())
+
+
 
 // 设置安全 HTTP headers 
 // app.use(helmet())

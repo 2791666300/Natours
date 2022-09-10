@@ -68,7 +68,7 @@ exports.resizeUserPhoto = async (req, res, next) => {
 const filterObj = (obj, ...alloweFields) => {
     const newObj = {}
     Object.keys(obj).forEach(el => {
-        if(alloweFields.includes(el)) newObj[el] = obj[el];
+        if(!alloweFields.includes(el)) newObj[el] = obj[el];
     })
     return newObj
 }
@@ -94,18 +94,18 @@ exports.updateMe = catchAsync(async(req, res, next) => {
 
 
     // 2） 更新用户文档
-    // const updateUser = await User.findOneAndUpdate(req.user.id, filteredBody, {new: true, runValidators: true})
+    const updateUser = await User.findByIdAndUpdate(req.user.id, filteredBody, {new: true, runValidators: true})
     
-    const user = await User.findById(req.user.id)
-    Object.keys(filteredBody).forEach(el => {
-        user[el] = filteredBody[el]
-    })
-    await user.save({ validateBeforeSave: false})
+    // const user = await User.findById(req.user.id)
+    // Object.keys(filteredBody).forEach(el => {
+    //     user[el] = filteredBody[el]
+    // })
+    // await user.save({ validateBeforeSave: false})
 
     res.status(200).json({
         status: 'success',
         data: {
-            user
+            updateUser
         }
     })
 

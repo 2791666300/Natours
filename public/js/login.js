@@ -17,9 +17,9 @@ export const login = async (email, password) => {
         // console.log(res)
         if(res.data.status === 'success'){
             showAlert('success', '登录成功！！')
-            window.setTimeout(() => {
-                location.assign('/')
-            }, 1500)
+            // window.setTimeout(() => {
+            //     location.assign('/')
+            // }, 1500)
         }
     }catch(err){
         showAlert('error', err.response.data.message)

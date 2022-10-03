@@ -13,5 +13,7 @@ jobs:
         with:
           node-version: "17"
       - run: npm install
-      - name: start server
+      - name: test
+        run: echo 'test---'
+      - name: start svr
         run: node server.js

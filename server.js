@@ -10,7 +10,7 @@ process.on('uncaughtExceptionMonitor', err => {
 
 
 
-dotenv.config({path: './config.env'})
+dotenv.config({ path: './config.env' })
 const app = require('./app')
 
 const DB = process.env.DATABASE.replace('<password>', process.env.DATABASE_PASSWORD)
@@ -32,9 +32,9 @@ mongoose.connect(DB, {
 
 
 
-const port = process.env.PORT || 3000;
+const port = 80 //process.env.PORT || 3000;
 const server = app.listen(port, () => {
-    console.log(`App running on port ${port}...............`);
+    console.log(`action added: App running on port ${port}...............`);
 })
 
 
@@ -44,7 +44,7 @@ process.on('unhandledRejection', err => {
     server.close(() => {
         process.exit(1)
     })
-    
+
 })
 
 

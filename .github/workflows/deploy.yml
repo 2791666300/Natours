@@ -9,6 +9,14 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
+      - name: Deploy file to Server
+        uses: wlixcc/SFTP-Deploy-Action@v1.0
+        with:
+          username: ${{ secrets.SERVER_USERNAME }} # 引用配置，用户名称
+          server: ${{ secrets.SERVER_IP }} # 引用配置，服务器 IP
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }} # 引用配置，SSH 私钥
+          local_path: "./*"
+          remote_path: "/deploy"
       - uses: actions/setup-node@v2
         with:
           node-version: "17"

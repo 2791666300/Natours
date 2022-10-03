@@ -1,7 +1,7 @@
 name: deploy
 on:
   push:
-    bracnhes:
+    branches:
       - test-deploy
 jobs:
   deploy:

@@ -5,7 +5,7 @@ on:
       - test-deploy
 jobs:
   deploy:
-    runs-on: centos
+    runs-on: ubuntu-latest
     steps:
       - name: checkout
         uses: actions/checkout@v2
